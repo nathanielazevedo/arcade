@@ -1,0 +1,236 @@
+/* Arcade Main Styles */
+.arcade-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.arcade-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.arcade-title {
+  font-size: 4rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+  margin: 0;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: linear-gradient(45deg, #FFD700, #FF6B6B, #4ECDC4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+.arcade-subtitle {
+  font-size: 1.4rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 20px 0 0 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Games Grid */
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.game-tile {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-tile::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent, var(--game-color, #4CAF50));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.game-tile:hover::before {
+  opacity: 0.1;
+}
+
+.game-tile:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  border-color: var(--game-color, #4CAF50);
+}
+
+.game-tile.coming-soon {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.game-tile.coming-soon:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.game-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.game-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  margin: 0 0 15px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.game-description {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.coming-soon-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 193, 7, 0.9);
+  color: #333;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-shadow: none;
+}
+
+/* Game Wrapper (when playing a game) */
+.game-wrapper {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer */
+.arcade-footer {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.1rem;
+  margin-top: 40px;
+}
+
+/* Animations */
+@keyframes titleGlow {
+  0% {
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+  }
+  100% {
+    filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.5));
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .arcade-title {
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+  }
+  
+  .arcade-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .games-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 10px;
+  }
+  
+  .game-tile {
+    min-height: 160px;
+    padding: 20px;
+  }
+  
+  .game-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+  }
+  
+  .game-title {
+    font-size: 1.5rem;
+  }
+  
+  .back-button {
+    top: 10px;
+    left: 10px;
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .arcade-container {
+    padding: 20px 10px;
+  }
+  
+  .arcade-header {
+    margin-bottom: 40px;
+  }
+  
+  .arcade-title {
+    font-size: 2rem;
+  }
+}
